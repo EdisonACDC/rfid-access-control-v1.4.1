@@ -1,0 +1,53 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Configura Controllo Accessi RFID",
+        "description": "Inserisci l'identificativo del dispositivo (es: portoncino)",
+        "data": {
+          "device_id": "ID Dispositivo",
+          "mqtt_topic": "Topic MQTT Tastierino (es: zigbee2mqtt/tastierino_portoncino)"
+        }
+      }
+    },
+    "error": {
+      "no_device_id": "Inserisci un ID dispositivo valido",
+      "no_mqtt_topic": "Inserisci il topic MQTT del tastierino",
+      "already_configured": "Dispositivo gia configurato"
+    },
+    "abort": {
+      "already_configured": "Dispositivo gia configurato"
+    }
+  },
+  "title": "RFID Access Control",
+  "services": {
+    "add_user": {
+      "name": "Aggiungi Utente",
+      "description": "Aggiunge un nuovo utente al sistema di controllo accessi"
+    },
+    "remove_user": {
+      "name": "Rimuovi Utente",
+      "description": "Rimuove un utente dal sistema"
+    },
+    "update_user": {
+      "name": "Aggiorna Utente",
+      "description": "Aggiorna le informazioni di un utente"
+    },
+    "add_action": {
+      "name": "Aggiungi Azione",
+      "description": "Aggiunge un'azione da eseguire quando l'utente accede"
+    },
+    "remove_action": {
+      "name": "Rimuovi Azione",
+      "description": "Rimuove un'azione da un utente"
+    },
+    "validate_access": {
+      "name": "Valida Accesso",
+      "description": "Valida le credenziali dell'utente ed esegue le azioni"
+    },
+    "list_users": {
+      "name": "Lista Utenti",
+      "description": "Elenca tutti gli utenti registrati"
+    }
+  }
+}

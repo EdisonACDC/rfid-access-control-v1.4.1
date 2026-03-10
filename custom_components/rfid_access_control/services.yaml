@@ -1,0 +1,165 @@
+add_user:
+  name: Add User
+  description: Add a new user to the access control system
+  fields:
+    user_id:
+      name: User ID
+      description: Unique identifier for the user (e.g., mario_001)
+      required: true
+      example: mario_001
+      selector:
+        text:
+    user_name:
+      name: User Name
+      description: Display name for the user
+      required: true
+      example: Mario Rossi
+      selector:
+        text:
+    user_pin:
+      name: PIN
+      description: 4-8 digit PIN code
+      required: false
+      example: "1234"
+      selector:
+        text:
+    user_rfid:
+      name: RFID
+      description: RFID card/tag identifier
+      required: false
+      example: "04A12B3C"
+      selector:
+        text:
+
+remove_user:
+  name: Remove User
+  description: Remove a user from the access control system
+  fields:
+    user_id:
+      name: User ID
+      description: User identifier to remove
+      required: true
+      example: mario_001
+      selector:
+        text:
+
+update_user:
+  name: Update User
+  description: Update user information
+  fields:
+    user_id:
+      name: User ID
+      description: User identifier to update
+      required: true
+      example: mario_001
+      selector:
+        text:
+    user_name:
+      name: User Name
+      description: New display name
+      required: false
+      example: Mario Rossi
+      selector:
+        text:
+    user_pin:
+      name: PIN
+      description: New PIN code
+      required: false
+      example: "5678"
+      selector:
+        text:
+    user_rfid:
+      name: RFID
+      description: New RFID identifier
+      required: false
+      example: "04A12B3C"
+      selector:
+        text:
+    enabled:
+      name: Enabled
+      description: Enable or disable user access
+      required: false
+      selector:
+        boolean:
+
+add_action:
+  name: Add Action
+  description: Add an action to execute when user gains access
+  fields:
+    user_id:
+      name: User ID
+      description: User identifier
+      required: true
+      example: mario_001
+      selector:
+        text:
+    action_name:
+      name: Action Name
+      description: Friendly name for this action
+      required: true
+      example: "Open Front Door"
+      selector:
+        text:
+    action_entity:
+      name: Target Entity
+      description: Entity ID to control
+      required: true
+      example: light.living_room
+      selector:
+        entity:
+    action_service:
+      name: Service
+      description: Service to call (domain.service)
+      required: true
+      example: light.turn_on
+      selector:
+        text:
+    action_data:
+      name: Service Data
+      description: Additional service parameters as JSON
+      required: false
+      example: '{"brightness": 255}'
+      selector:
+        text:
+
+remove_action:
+  name: Remove Action
+  description: Remove an action from a user
+  fields:
+    user_id:
+      name: User ID
+      description: User identifier
+      required: true
+      example: mario_001
+      selector:
+        text:
+    action_name:
+      name: Action Name
+      description: Name of the action to remove
+      required: true
+      example: "Open Front Door"
+      selector:
+        text:
+
+validate_access:
+  name: Validate Access
+  description: Validate user credentials and execute actions
+  fields:
+    user_pin:
+      name: PIN
+      description: User PIN code
+      required: false
+      example: "1234"
+      selector:
+        text:
+    user_rfid:
+      name: RFID
+      description: User RFID identifier
+      required: false
+      example: "04A12B3C"
+      selector:
+        text:
+
+list_users:
+  name: List Users
+  description: List all registered users

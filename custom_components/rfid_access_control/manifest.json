@@ -1,0 +1,13 @@
+{
+  "domain": "rfid_access_control",
+  "name": "RFID Access Control",
+  "codeowners": ["@EdisonACDC"],
+  "config_flow": true,
+  "documentation": "https://github.com/EdisonACDC/rfid-access-control-v1.1",
+  "issue_tracker": "https://github.com/EdisonACDC/rfid-access-control-v1.1/issues",
+  "dependencies": ["mqtt"],
+  "requirements": [],
+  "version": "1.3.0",
+  "iot_class": "local_push",
+  "homeassistant": "2023.1.0"
+}

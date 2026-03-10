@@ -1,0 +1,37 @@
+## ============================================================
+## AUTOMAZIONE PER TASTIERINO KEPZB-110 via Zigbee2MQTT
+## ============================================================
+## Il tuo tastierino manda messaggi su:
+##   Topic: zigbee2mqtt/tastierino_portoncino
+##   Formato: {"action": "disarm", "action_code": "1234", ...}
+##
+## Quando digiti il PIN e premi il tasto "disarm" (o altro),
+## il tastierino invia action_code con il codice digitato.
+## Questa automazione lo intercetta e chiama validate_access.
+##
+## COME INSTALLARE:
+## 1. Home Assistant → Impostazioni → Automazioni e Scene
+## 2. + Crea Automazione → Crea nuova automazione
+## 3. Clicca i 3 puntini ⋮ in alto a destra
+## 4. "Modifica in YAML"
+## 5. Cancella tutto il contenuto
+## 6. Incolla TUTTO il blocco qui sotto (da "alias:" fino alla fine)
+## 7. Salva
+## ============================================================
+
+alias: "Tastierino - Valida accesso RFID"
+description: "Intercetta PIN dal tastierino KEPZB-110 via Zigbee2MQTT e valida tramite RFID Access Control"
+trigger:
+  - platform: mqtt
+    topic: "zigbee2mqtt/tastierino_portoncino"
+condition:
+  - condition: template
+    value_template: >
+      {{ trigger.payload_json is defined and
+         trigger.payload_json.action_code is defined and
+         trigger.payload_json.action_code | string | length > 0 }}
+action:
+  - service: rfid_access_control.validate_access
+    data:
+      user_pin: "{{ trigger.payload_json.action_code }}"
+mode: single
