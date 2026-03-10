@@ -884,11 +884,16 @@ class RFIDAccessControlCard extends HTMLElement {
       $('btn-stop-rfid').addEventListener('click', () => this._stopRfidListen());
     }
 
-    // Wizard step 3 - entity filter
+    // Wizard step 3 - entity filter (update dropdown without full re-render)
     if ($('wizard-entity-filter')) {
       $('wizard-entity-filter').addEventListener('input', (e) => {
         this.entityFilter = e.target.value;
-        this.render();
+        const entitySelect = $('wizard-entity');
+        if (entitySelect) {
+          const filtered = this._getFilteredEntities().slice(0, 50);
+          entitySelect.innerHTML = '<option value="">-- Scegli entita --</option>' +
+            filtered.map(eid => `<option value="${eid}">${this._getEntityFriendlyName(eid)} (${eid})</option>`).join('');
+        }
       });
     }
 
